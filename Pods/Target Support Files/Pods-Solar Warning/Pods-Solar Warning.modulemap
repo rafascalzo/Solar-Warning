@@ -1,0 +1,6 @@
+framework module Pods_Solar_Warning {
+  umbrella header "Pods-Solar Warning-umbrella.h"
+
+  export *
+  module * { export * }
+}
