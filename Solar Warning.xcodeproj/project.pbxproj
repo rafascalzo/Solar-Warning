@@ -10,6 +10,7 @@
 		5CAD60844175F4FA740C73A1 /* Pods_Solar_Warning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E757867C4EB03D37A0BB634B /* Pods_Solar_Warning.framework */; };
 		AF18F22823804BA600096210 /* RealTimeUVIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF18F22723804BA600096210 /* RealTimeUVIndex.swift */; };
 		AF18F22A23805DE500096210 /* OpenUVAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF18F22923805DE500096210 /* OpenUVAPI.swift */; };
+		AF192C0D2381FD8C00F247A1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF192C0C2381FD8C00F247A1 /* CollectionViewCell.swift */; };
 		AF7B2EE8237FAD290028BDCC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7B2EE7237FAD290028BDCC /* AppDelegate.swift */; };
 		AF7B2EEA237FAD290028BDCC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7B2EE9237FAD290028BDCC /* SceneDelegate.swift */; };
 		AF7B2EEC237FAD290028BDCC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF7B2EEB237FAD290028BDCC /* ViewController.swift */; };
@@ -21,11 +22,25 @@
 		AF84843A23807A62000B8390 /* HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF84843923807A62000B8390 /* HTTPStatus.swift */; };
 		AF84843C2380888C000B8390 /* EncodableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF84843B2380888C000B8390 /* EncodableObject.swift */; };
 		AF848443238097F0000B8390 /* UVIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF848442238097F0000B8390 /* UVIndex.swift */; };
+		AFFF98062380E58F0001F78A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF98052380E58F0001F78A /* User.swift */; };
+		AFFF980E2380E8E10001F78A /* Solar_WarningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF980D2380E8E10001F78A /* Solar_WarningTests.swift */; };
+		AFFF98172380F0A10001F78A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF98162380F0A10001F78A /* TabBarViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFFF98102380E8E10001F78A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AF7B2EDC237FAD290028BDCC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AF7B2EE3237FAD290028BDCC;
+			remoteInfo = "Solar Warning";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		AF18F22723804BA600096210 /* RealTimeUVIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeUVIndex.swift; sourceTree = "<group>"; };
 		AF18F22923805DE500096210 /* OpenUVAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUVAPI.swift; sourceTree = "<group>"; };
+		AF192C0C2381FD8C00F247A1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		AF7B2EE4237FAD290028BDCC /* Solar Warning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Solar Warning.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF7B2EE7237FAD290028BDCC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF7B2EE9237FAD290028BDCC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +54,11 @@
 		AF84843923807A62000B8390 /* HTTPStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatus.swift; sourceTree = "<group>"; };
 		AF84843B2380888C000B8390 /* EncodableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableObject.swift; sourceTree = "<group>"; };
 		AF848442238097F0000B8390 /* UVIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndex.swift; sourceTree = "<group>"; };
+		AFFF98052380E58F0001F78A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AFFF980B2380E8E10001F78A /* Solar WarningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Solar WarningTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFFF980D2380E8E10001F78A /* Solar_WarningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solar_WarningTests.swift; sourceTree = "<group>"; };
+		AFFF980F2380E8E10001F78A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFFF98162380F0A10001F78A /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B63C28FD498B586F93A8BC72 /* Pods-Solar Warning.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Solar Warning.release.xcconfig"; path = "Target Support Files/Pods-Solar Warning/Pods-Solar Warning.release.xcconfig"; sourceTree = "<group>"; };
 		E757867C4EB03D37A0BB634B /* Pods_Solar_Warning.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Solar_Warning.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCBCBC71BFFC9533B1D8B0F6 /* Pods-Solar Warning.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Solar Warning.debug.xcconfig"; path = "Target Support Files/Pods-Solar Warning/Pods-Solar Warning.debug.xcconfig"; sourceTree = "<group>"; };
@@ -50,6 +70,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				5CAD60844175F4FA740C73A1 /* Pods_Solar_Warning.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFF98082380E8E10001F78A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				AF7B2EE6237FAD290028BDCC /* Solar Warning */,
+				AFFF980C2380E8E10001F78A /* Solar WarningTests */,
 				AF7B2EE5237FAD290028BDCC /* Products */,
 				76C92F96FF7884749BB8A5F6 /* Pods */,
 				0ECB82982746A0092E8B34CC /* Frameworks */,
@@ -95,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				AF7B2EE4237FAD290028BDCC /* Solar Warning.app */,
+				AFFF980B2380E8E10001F78A /* Solar WarningTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,13 +131,13 @@
 		AF7B2EE6237FAD290028BDCC /* Solar Warning */ = {
 			isa = PBXGroup;
 			children = (
+				AFFF98152380F0810001F78A /* Tab Bar Controller */,
+				AFFF98042380E54E0001F78A /* ViewModel */,
+				AF8484442380D774000B8390 /* View */,
 				AF18F226238049EB00096210 /* Model */,
 				AF7B2EFD237FB51C0028BDCC /* Service */,
 				AF7B2EFC237FB02B0028BDCC /* Root Controller */,
 				AF7B2EFB237FAF740028BDCC /* Supporting Files */,
-				AF7B2EE7237FAD290028BDCC /* AppDelegate.swift */,
-				AF7B2EE9237FAD290028BDCC /* SceneDelegate.swift */,
-				AF7B2EEB237FAD290028BDCC /* ViewController.swift */,
 			);
 			path = "Solar Warning";
 			sourceTree = "<group>";
@@ -127,6 +156,8 @@
 		AF7B2EFC237FB02B0028BDCC /* Root Controller */ = {
 			isa = PBXGroup;
 			children = (
+				AF7B2EE7237FAD290028BDCC /* AppDelegate.swift */,
+				AF7B2EE9237FAD290028BDCC /* SceneDelegate.swift */,
 			);
 			path = "Root Controller";
 			sourceTree = "<group>";
@@ -168,6 +199,40 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		AF8484442380D774000B8390 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF7B2EEB237FAD290028BDCC /* ViewController.swift */,
+				AF192C0C2381FD8C00F247A1 /* CollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		AFFF98042380E54E0001F78A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF98052380E58F0001F78A /* User.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		AFFF980C2380E8E10001F78A /* Solar WarningTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF980D2380E8E10001F78A /* Solar_WarningTests.swift */,
+				AFFF980F2380E8E10001F78A /* Info.plist */,
+			);
+			path = "Solar WarningTests";
+			sourceTree = "<group>";
+		};
+		AFFF98152380F0810001F78A /* Tab Bar Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF98162380F0A10001F78A /* TabBarViewController.swift */,
+			);
+			path = "Tab Bar Controller";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,6 +255,24 @@
 			productReference = AF7B2EE4237FAD290028BDCC /* Solar Warning.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AFFF980A2380E8E10001F78A /* Solar WarningTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFFF98122380E8E10001F78A /* Build configuration list for PBXNativeTarget "Solar WarningTests" */;
+			buildPhases = (
+				AFFF98072380E8E10001F78A /* Sources */,
+				AFFF98082380E8E10001F78A /* Frameworks */,
+				AFFF98092380E8E10001F78A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFFF98112380E8E10001F78A /* PBXTargetDependency */,
+			);
+			name = "Solar WarningTests";
+			productName = "Solar WarningTests";
+			productReference = AFFF980B2380E8E10001F78A /* Solar WarningTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -202,6 +285,10 @@
 				TargetAttributes = {
 					AF7B2EE3237FAD290028BDCC = {
 						CreatedOnToolsVersion = 11.1;
+					};
+					AFFF980A2380E8E10001F78A = {
+						CreatedOnToolsVersion = 11.1;
+						TestTargetID = AF7B2EE3237FAD290028BDCC;
 					};
 				};
 			};
@@ -219,6 +306,7 @@
 			projectRoot = "";
 			targets = (
 				AF7B2EE3237FAD290028BDCC /* Solar Warning */,
+				AFFF980A2380E8E10001F78A /* Solar WarningTests */,
 			);
 		};
 /* End PBXProject section */
@@ -230,6 +318,13 @@
 			files = (
 				AF7B2EF4237FAD2B0028BDCC /* LaunchScreen.storyboard in Resources */,
 				AF7B2EF1237FAD2B0028BDCC /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFF98092380E8E10001F78A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,15 +383,34 @@
 				AF84843A23807A62000B8390 /* HTTPStatus.swift in Sources */,
 				AF7B2EE8237FAD290028BDCC /* AppDelegate.swift in Sources */,
 				AF7B2EEA237FAD290028BDCC /* SceneDelegate.swift in Sources */,
+				AFFF98062380E58F0001F78A /* User.swift in Sources */,
 				AF7B2EFF237FB6AD0028BDCC /* Extensions.swift in Sources */,
 				AF84843623807A0B000B8390 /* Network.swift in Sources */,
 				AF84843823807A39000B8390 /* ErrorModel.swift in Sources */,
+				AF192C0D2381FD8C00F247A1 /* CollectionViewCell.swift in Sources */,
+				AFFF98172380F0A10001F78A /* TabBarViewController.swift in Sources */,
 				AF84843C2380888C000B8390 /* EncodableObject.swift in Sources */,
 				AF18F22A23805DE500096210 /* OpenUVAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AFFF98072380E8E10001F78A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFFF980E2380E8E10001F78A /* Solar_WarningTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFFF98112380E8E10001F78A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AF7B2EE3237FAD290028BDCC /* Solar Warning */;
+			targetProxy = AFFF98102380E8E10001F78A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AF7B2EF2237FAD2B0028BDCC /* LaunchScreen.storyboard */ = {
@@ -460,6 +574,44 @@
 			};
 			name = Release;
 		};
+		AFFF98132380E8E10001F78A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Solar WarningTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "rafascalzo-com.guithub.Solar-WarningTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Solar Warning.app/Solar Warning";
+			};
+			name = Debug;
+		};
+		AFFF98142380E8E10001F78A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Solar WarningTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "rafascalzo-com.guithub.Solar-WarningTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Solar Warning.app/Solar Warning";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -477,6 +629,15 @@
 			buildConfigurations = (
 				AF7B2EF9237FAD2B0028BDCC /* Debug */,
 				AF7B2EFA237FAD2B0028BDCC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFFF98122380E8E10001F78A /* Build configuration list for PBXNativeTarget "Solar WarningTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFFF98132380E8E10001F78A /* Debug */,
+				AFFF98142380E8E10001F78A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -9,7 +9,7 @@
 import Foundation
 
 struct RealTimeUVIndexWrapper: Codable {
-    var results: RealTimeUVIndex?
+    var results: RealTimeUVIndex
     
     private enum CodingKeys: String, CodingKey {
         case results = "result"
@@ -18,21 +18,21 @@ struct RealTimeUVIndexWrapper: Codable {
 
 struct RealTimeUVIndex: Codable {
     //UV Index (real-time or forecasted depending on dtparameter)
-    var uvIndex:Double?
+    var uvIndex:Double
     //UV Index datetime in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
-    var uvTime: String?
+    var uvTime: String
     //Max UV Index for the day (at solar noon)
-    var uvMax: Double?
+    var uvMax: Double
     //max UV Index datetime (solar noon) in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
-    var uvMaxTime: String?
+    var uvMaxTime: String
     //ozone level in du (Dobson Units) from OMI data or request (if provided),[Double]
-    var ozone: Double?
+    var ozone: Double
     //Latest OMI ozone update datetime in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
-    var ozoneTime: String?
+    var ozoneTime: String
     //safe exposure time for Fitzpatrick Skin Types
     var safeExposureTime: SafeExposureTime?
     //(*courtesy of suncalc.js)
-    var sunInfo: Sun?
+    var sunInfo: Sun
     
     private enum CodingKeys: String, CodingKey {
         case uvIndex = "uv"
@@ -47,8 +47,8 @@ struct RealTimeUVIndex: Codable {
 }
 struct Sun: Codable {
     
-    var sunTimes: SunTimes?
-    var sunPosition: SunPosition?
+    var sunTimes: SunTimes
+    var sunPosition: SunPosition
     
     private enum CodingKeys: String, CodingKey {
         case sunTimes = "sun_times"
@@ -57,33 +57,33 @@ struct Sun: Codable {
 }
 struct SunTimes: Codable {
     //sunrise:sunrise (top edge of the sun appears on the horizon)
-    var sunrise: String?
+    var sunrise: String
     //sunriseEnd:sunrise ends (bottom edge of the sun touches the horizon) ,[ISO-8601]
-    var sunriseEnd: String?
+    var sunriseEnd: String
     //goldenHourEnd:morning golden hour (soft light, best time for photography) ends ,[ISO-8601]
-    var goldenHourEnd: String?
+    var goldenHourEnd: String
     //solarNoon:solar noon (sun is in the highest position) ,[ISO-8601]
-    var solarNoon: String?
+    var solarNoon: String
     //goldenHour:evening golden hour starts ,[ISO-8601]
-    var goldenHourStart: String?
+    var goldenHourStart: String
     //sunsetStart:sunset starts (bottom edge of the sun touches the horizon) ,[ISO-8601]
-    var sunsetStart: String?
+    var sunsetStart: String
     //sunset:sunset starts (bottom edge of the sun touches the horizon) ,[ISO-8601]
-    var sunset: String?
+    var sunset: String
     //dusk:dusk (evening nautical twilight starts) ,[ISO-8601]
-    var dusk: String?
+    var dusk: String
     //nauticalDusk:nautical dusk (evening astronomical twilight starts) ,[ISO-8601]
-    var nauticalDusk: String?
+    var nauticalDusk: String
     //night:night starts (dark enough for astronomical observations) ,[ISO-8601]
-    var nightStart: String?
+    var nightStart: String
     //nadir:nadir (darkest moment of the night, sun is in the lowest position) ,[ISO-8601]
-    var darkestMomentOfTheNight: String?
+    var darkestMomentOfTheNight: String
     //nightEnd:night ends (morning astronomical twilight starts) ,[ISO-8601]
-    var nightEnd: String?
+    var nightEnd: String
     //nauticalDawn:nautical dawn (morning nautical twilight starts) ,[ISO-8601]
-    var nauticalDawn: String?
+    var nauticalDawn: String
     //dawn:dawn (morning nautical twilight ends, morning civil twilight starts) ,[ISO-8601]
-    var dawn: String?
+    var dawn: String
     
     private enum CodingKeys: String, CodingKey {
         case sunrise = "sunrise"
@@ -104,9 +104,9 @@ struct SunTimes: Codable {
 }
 struct SunPosition: Codable {
     //azimuth:sun azimuth in radians (direction along the horizon, measured from south to west), e.g. 0 is south and Math.PI * 3/4 is northwest ,[Double]
-    var azimuth: Double?
+    var azimuth: Double
     //altitude:sun altitude above the horizon in radians, e.g. 0 at the horizon and PI/2 at the zenith (straight over your head) ,[Double]
-    var altitude: Double?
+    var altitude: Double
     
     private enum CodingKeys: String, CodingKey {
         case azimuth, altitude
