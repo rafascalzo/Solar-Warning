@@ -22,6 +22,7 @@
 		AF84843A23807A62000B8390 /* HTTPStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF84843923807A62000B8390 /* HTTPStatus.swift */; };
 		AF84843C2380888C000B8390 /* EncodableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF84843B2380888C000B8390 /* EncodableObject.swift */; };
 		AF848443238097F0000B8390 /* UVIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF848442238097F0000B8390 /* UVIndex.swift */; };
+		AFE73C0A2384A86E00756F8A /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE73C092384A86E00756F8A /* Constraints.swift */; };
 		AFFF98062380E58F0001F78A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF98052380E58F0001F78A /* User.swift */; };
 		AFFF980E2380E8E10001F78A /* Solar_WarningTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF980D2380E8E10001F78A /* Solar_WarningTests.swift */; };
 		AFFF98172380F0A10001F78A /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF98162380F0A10001F78A /* TabBarViewController.swift */; };
@@ -54,6 +55,7 @@
 		AF84843923807A62000B8390 /* HTTPStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPStatus.swift; sourceTree = "<group>"; };
 		AF84843B2380888C000B8390 /* EncodableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncodableObject.swift; sourceTree = "<group>"; };
 		AF848442238097F0000B8390 /* UVIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UVIndex.swift; sourceTree = "<group>"; };
+		AFE73C092384A86E00756F8A /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
 		AFFF98052380E58F0001F78A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AFFF980B2380E8E10001F78A /* Solar WarningTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Solar WarningTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFFF980D2380E8E10001F78A /* Solar_WarningTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Solar_WarningTests.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				AF84843D238092E1000B8390 /* OpenUVAPI */,
+				AFE73C092384A86E00756F8A /* Constraints.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				AF7B2EE8237FAD290028BDCC /* AppDelegate.swift in Sources */,
 				AF7B2EEA237FAD290028BDCC /* SceneDelegate.swift in Sources */,
 				AFFF98062380E58F0001F78A /* User.swift in Sources */,
+				AFE73C0A2384A86E00756F8A /* Constraints.swift in Sources */,
 				AF7B2EFF237FB6AD0028BDCC /* Extensions.swift in Sources */,
 				AF84843623807A0B000B8390 /* Network.swift in Sources */,
 				AF84843823807A39000B8390 /* ErrorModel.swift in Sources */,

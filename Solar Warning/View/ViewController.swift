@@ -75,6 +75,10 @@ class ViewController: UIViewController {
         return sv
     }()
     
+    var body: UIView = {
+       let view = UIView()
+        return view
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
@@ -145,6 +149,11 @@ class ViewController: UIViewController {
 //        print("hours \(numb/3600)")
     }
     
+    var viewTest: UIView = {
+       let view = UIView()
+        view.backgroundColor = .orange
+        return view
+    }()
     func render() {
         view.backgroundColor = .backgroudColor
         let views =  labelNames.map({ (word) -> UILabel in
@@ -182,7 +191,8 @@ class ViewController: UIViewController {
         circularProgressBar.strokeStart = 0
         circularProgressBar.strokeEnd = 0.7
         
-        
+        view.addSubview(viewTest)
+        viewTest.addConstraints(top: true, 16, bot: true, 16, leading: true, 16, trailing: true, 16, relation: .equalTo(view: view))
     }
 }
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
