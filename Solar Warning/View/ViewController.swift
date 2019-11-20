@@ -192,7 +192,13 @@ class ViewController: UIViewController {
         circularProgressBar.strokeEnd = 0.7
         
         view.addSubview(viewTest)
-        viewTest.addConstraints(top: true, 16, bot: true, 16, leading: true, 16, trailing: true, 16, relation: .equalTo(view: view))
+        viewTest.addConstraints(top: true, 16, bot: true, 16, leading: true, 16, trailing: true, 16, relation: .equalToSuperview)
+        
+        let label = UILabel()
+        label.text = "Vish"
+        
+        viewTest.addSubview(label)
+        label.addConstraints(center: .equalSuperviewCenter)
     }
 }
 extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
