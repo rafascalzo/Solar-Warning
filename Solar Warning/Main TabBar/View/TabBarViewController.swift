@@ -16,7 +16,7 @@ class TabBarViewController: UITabBarController {
         
         let controller = ViewController()
         controller.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
-        controller.tabBarItem.accessibilityLabel = "Fada gostosa"
+        controller.tabBarItem.accessibilityLabel = "Test"
         let controllers = [controller]
         let viewcontrollers = controllers.map {
             UINavigationController(rootViewController: $0)

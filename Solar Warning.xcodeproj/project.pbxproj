@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		5CAD60844175F4FA740C73A1 /* Pods_Solar_Warning.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E757867C4EB03D37A0BB634B /* Pods_Solar_Warning.framework */; };
+		892B646823F0C4C700864039 /* TabBarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B646723F0C4C700864039 /* TabBarProtocols.swift */; };
+		892B647123F0C59300864039 /* MainViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B647023F0C59300864039 /* MainViewProtocols.swift */; };
+		892B647323F0C60000864039 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B647223F0C60000864039 /* MainView.swift */; };
+		892B647523F0C6B300864039 /* MainViewWireframe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B647423F0C6B300864039 /* MainViewWireframe.swift */; };
+		892B647723F0C6EB00864039 /* MainViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 892B647623F0C6EB00864039 /* MainViewPresenter.swift */; };
 		AF18F22823804BA600096210 /* RealTimeUVIndex.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF18F22723804BA600096210 /* RealTimeUVIndex.swift */; };
 		AF18F22A23805DE500096210 /* OpenUVAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF18F22923805DE500096210 /* OpenUVAPI.swift */; };
 		AF192C0D2381FD8C00F247A1 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF192C0C2381FD8C00F247A1 /* CollectionViewCell.swift */; };
@@ -39,6 +44,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		892B646723F0C4C700864039 /* TabBarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarProtocols.swift; sourceTree = "<group>"; };
+		892B647023F0C59300864039 /* MainViewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewProtocols.swift; sourceTree = "<group>"; };
+		892B647223F0C60000864039 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		892B647423F0C6B300864039 /* MainViewWireframe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewWireframe.swift; sourceTree = "<group>"; };
+		892B647623F0C6EB00864039 /* MainViewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewPresenter.swift; sourceTree = "<group>"; };
 		AF18F22723804BA600096210 /* RealTimeUVIndex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealTimeUVIndex.swift; sourceTree = "<group>"; };
 		AF18F22923805DE500096210 /* OpenUVAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenUVAPI.swift; sourceTree = "<group>"; };
 		AF192C0C2381FD8C00F247A1 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
@@ -102,6 +112,122 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		892B646023F0B99F00864039 /* Main TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				892B646623F0B9FF00864039 /* View */,
+				892B646523F0B9F400864039 /* Interactor */,
+				892B646423F0B9E300864039 /* Presenter */,
+				892B646323F0B9D900864039 /* Entity */,
+				892B646223F0B9CE00864039 /* Wireframe */,
+				892B646123F0B9C600864039 /* Protocols */,
+			);
+			path = "Main TabBar";
+			sourceTree = "<group>";
+		};
+		892B646123F0B9C600864039 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				892B646723F0C4C700864039 /* TabBarProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		892B646223F0B9CE00864039 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		892B646323F0B9D900864039 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		892B646423F0B9E300864039 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		892B646523F0B9F400864039 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		892B646623F0B9FF00864039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AFFF98162380F0A10001F78A /* TabBarViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		892B646923F0C52C00864039 /* Main View */ = {
+			isa = PBXGroup;
+			children = (
+				892B646F23F0C56200864039 /* View */,
+				892B646E23F0C55C00864039 /* Interactor */,
+				892B646D23F0C55500864039 /* Presenter */,
+				892B646C23F0C54D00864039 /* Entity */,
+				892B646B23F0C54600864039 /* Wireframe */,
+				892B646A23F0C53F00864039 /* Protocols */,
+			);
+			path = "Main View";
+			sourceTree = "<group>";
+		};
+		892B646A23F0C53F00864039 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				892B647023F0C59300864039 /* MainViewProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		892B646B23F0C54600864039 /* Wireframe */ = {
+			isa = PBXGroup;
+			children = (
+				892B647423F0C6B300864039 /* MainViewWireframe.swift */,
+			);
+			path = Wireframe;
+			sourceTree = "<group>";
+		};
+		892B646C23F0C54D00864039 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		892B646D23F0C55500864039 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				892B647623F0C6EB00864039 /* MainViewPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		892B646E23F0C55C00864039 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		892B646F23F0C56200864039 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				892B647223F0C60000864039 /* MainView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		AF18F226238049EB00096210 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +259,8 @@
 		AF7B2EE6237FAD290028BDCC /* Solar Warning */ = {
 			isa = PBXGroup;
 			children = (
+				892B646923F0C52C00864039 /* Main View */,
+				892B646023F0B99F00864039 /* Main TabBar */,
 				AFFF98152380F0810001F78A /* Tab Bar Controller */,
 				AFFF98042380E54E0001F78A /* ViewModel */,
 				AF8484442380D774000B8390 /* View */,
@@ -231,7 +359,6 @@
 		AFFF98152380F0810001F78A /* Tab Bar Controller */ = {
 			isa = PBXGroup;
 			children = (
-				AFFF98162380F0A10001F78A /* TabBarViewController.swift */,
 			);
 			path = "Tab Bar Controller";
 			sourceTree = "<group>";
@@ -381,14 +508,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF7B2EEC237FAD290028BDCC /* ViewController.swift in Sources */,
+				892B647323F0C60000864039 /* MainView.swift in Sources */,
+				892B647723F0C6EB00864039 /* MainViewPresenter.swift in Sources */,
+				892B646823F0C4C700864039 /* TabBarProtocols.swift in Sources */,
 				AF848443238097F0000B8390 /* UVIndex.swift in Sources */,
 				AF18F22823804BA600096210 /* RealTimeUVIndex.swift in Sources */,
 				AF84843A23807A62000B8390 /* HTTPStatus.swift in Sources */,
 				AF7B2EE8237FAD290028BDCC /* AppDelegate.swift in Sources */,
 				AF7B2EEA237FAD290028BDCC /* SceneDelegate.swift in Sources */,
+				892B647523F0C6B300864039 /* MainViewWireframe.swift in Sources */,
 				AFFF98062380E58F0001F78A /* User.swift in Sources */,
 				AFE73C0A2384A86E00756F8A /* Constraints.swift in Sources */,
 				AF7B2EFF237FB6AD0028BDCC /* Extensions.swift in Sources */,
+				892B647123F0C59300864039 /* MainViewProtocols.swift in Sources */,
 				AF84843623807A0B000B8390 /* Network.swift in Sources */,
 				AF84843823807A39000B8390 /* ErrorModel.swift in Sources */,
 				AF192C0D2381FD8C00F247A1 /* CollectionViewCell.swift in Sources */,

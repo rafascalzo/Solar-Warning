@@ -76,7 +76,7 @@ class ViewController: UIViewController {
     }()
     
     var body: UIView = {
-       let view = UIView()
+        let view = UIView()
         return view
     }()
     override func viewDidLoad() {
@@ -85,14 +85,14 @@ class ViewController: UIViewController {
         collectionViewSunInfo.register(SunCollectionViewCell.self, forCellWithReuseIdentifier: sunReuseIdCell)
         render()
         
-                OpenUVAPI.UVIndex.requestAllData { (data, error) in
-                    if error != nil {
-                        print(error!)
-                    } else {
-                        self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
-                    }
-        
-                }
+        OpenUVAPI.UVIndex.requestAllData { (data, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
+            }
+            
+        }
         
     }
     var sunInfo: Sun!
@@ -109,12 +109,12 @@ class ViewController: UIViewController {
     
     func updateView() {
         let sunrise = sunInfo.sunTimes.sunrise
-//        let sunriseDate = Date.dateFrom(customString: sunrise, with: .ISO8601)
-//        let sunriseHour = Date.getHour(from: sunriseDate, withFormat: .hourAndMinutes)
+        //        let sunriseDate = Date.dateFrom(customString: sunrise, with: .ISO8601)
+        //        let sunriseHour = Date.getHour(from: sunriseDate, withFormat: .hourAndMinutes)
         
         let darkest = sunInfo.sunTimes.darkestMomentOfTheNight
-//        let darkestDate = Date.dateFrom(customString: darkest, with: .ISO8601)
-//        let darkestHour = Date.getHour(from: darkestDate, withFormat: .hourAndMinutes)
+        //        let darkestDate = Date.dateFrom(customString: darkest, with: .ISO8601)
+        //        let darkestHour = Date.getHour(from: darkestDate, withFormat: .hourAndMinutes)
         
         print("dfdsf",sunrise, darkest)
         let sunriseFragment = sunrise.components(separatedBy: "T")
@@ -137,20 +137,20 @@ class ViewController: UIViewController {
         }
         
         
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy/MM/dd HH:mm"
-//        let someDateTime = formatter.date(from: "2019/11/17 00:00")
-//        print(someDateTime!)
-//
-//        let remaining = someDateTime!.distance(to: sunriseDate)
-//        print(remaining)
-//
-//        let numb = CGFloat(remaining)
-//        print("hours \(numb/3600)")
+        //        let formatter = DateFormatter()
+        //        formatter.dateFormat = "yyyy/MM/dd HH:mm"
+        //        let someDateTime = formatter.date(from: "2019/11/17 00:00")
+        //        print(someDateTime!)
+        //
+        //        let remaining = someDateTime!.distance(to: sunriseDate)
+        //        print(remaining)
+        //
+        //        let numb = CGFloat(remaining)
+        //        print("hours \(numb/3600)")
     }
     
     var viewTest: UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .orange
         return view
     }()
@@ -161,7 +161,7 @@ class ViewController: UIViewController {
             label.text = word
             label.backgroundColor = .cyan
             return label
-            })
+        })
         arrangedSubViews = views
         view.addSubview(headerView)
         headerView.addSubview(collectionViewSunInfo)
