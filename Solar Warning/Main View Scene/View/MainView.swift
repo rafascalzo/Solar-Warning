@@ -1,16 +1,63 @@
 //
-//  ViewController.swift
+//  MainView.swift
 //  Solar Warning
 //
-//  Created by rafaeldelegate on 11/15/19.
-//  Copyright © 2019 rafaeldelegate. All rights reserved.
+//  Created by FulltrackMobile on 09/02/20.
+//  Copyright © 2020 rafaeldelegate. All rights reserved.
 //
 
 import UIKit
-
-private let sunReuseIdCell = "SunInfo"
-
-class ViewController: UIViewController {
+private let sunReuseIdCell = "SunInfoCell"
+class MainView: UIViewController, MainViewViewProtocol {
+    
+    var presenter: MainViewPresenterProtocol?
+    
+    func render() {
+        view.backgroundColor = .backgroudColor
+        let views =  labelNames.map({ (word) -> UILabel in
+            let label = UILabel()
+            label.text = word
+            label.backgroundColor = .cyan
+            return label
+        })
+        arrangedSubViews = views
+        view.addSubview(headerView)
+        headerView.addSubview(collectionViewSunInfo)
+        headerView.addSubview(stackView)
+        
+        NSLayoutConstraint.activate([
+            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            headerView.heightAnchor.constraint(equalToConstant: 400),
+            
+            collectionViewSunInfo.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            collectionViewSunInfo.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
+            collectionViewSunInfo.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.5),
+            collectionViewSunInfo.heightAnchor.constraint(equalToConstant: 230),
+            
+            stackView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
+            stackView.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.5),
+            stackView.heightAnchor.constraint(equalToConstant: 230)
+        ])
+        
+        trackLayer.position = CGPoint(x: (3/4)*(view.frame.width), y: 100)
+        headerView.layer.addSublayer(trackLayer)
+        circularProgressBar.position =  CGPoint(x: (3/4)*(view.frame.width), y: 100)
+        headerView.layer.addSublayer(circularProgressBar)
+        circularProgressBar.strokeStart = 0
+        circularProgressBar.strokeEnd = 0.7
+        
+        //        view.addSubview(viewTest)
+        //        viewTest.addConstraints(top: true, 16, bot: true, 16, leading: true, 16, trailing: true, 16, relation: .equalToSuperview)
+        //
+        //        let label = UILabel()
+        //        label.text = "Vish"
+        //
+        //        viewTest.addSubview(label)
+        //        label.addConstraints(center: .equalSuperviewCenter)
+    }
     
     var circularProgressBar: CAShapeLayer = {
         let radius:CGFloat = 50
@@ -91,9 +138,7 @@ class ViewController: UIViewController {
             } else {
                 self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
             }
-            
         }
-        
     }
     var sunInfo: Sun!
     var safeExposureTime: SafeExposureTime!
@@ -154,54 +199,9 @@ class ViewController: UIViewController {
         view.backgroundColor = .orange
         return view
     }()
-    func render() {
-        view.backgroundColor = .backgroudColor
-        let views =  labelNames.map({ (word) -> UILabel in
-            let label = UILabel()
-            label.text = word
-            label.backgroundColor = .cyan
-            return label
-        })
-        arrangedSubViews = views
-        view.addSubview(headerView)
-        headerView.addSubview(collectionViewSunInfo)
-        headerView.addSubview(stackView)
-        
-        NSLayoutConstraint.activate([
-            headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 400),
-            
-            collectionViewSunInfo.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-            collectionViewSunInfo.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            collectionViewSunInfo.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.5),
-            collectionViewSunInfo.heightAnchor.constraint(equalToConstant: 230),
-            
-            stackView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-            stackView.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.5),
-            stackView.heightAnchor.constraint(equalToConstant: 230)
-        ])
-        
-        trackLayer.position = CGPoint(x: (3/4)*(view.frame.width), y: 100)
-        headerView.layer.addSublayer(trackLayer)
-        circularProgressBar.position =  CGPoint(x: (3/4)*(view.frame.width), y: 100)
-        headerView.layer.addSublayer(circularProgressBar)
-        circularProgressBar.strokeStart = 0
-        circularProgressBar.strokeEnd = 0.7
-        
-        view.addSubview(viewTest)
-        viewTest.addConstraints(top: true, 16, bot: true, 16, leading: true, 16, trailing: true, 16, relation: .equalToSuperview)
-        
-        let label = UILabel()
-        label.text = "Vish"
-        
-        viewTest.addSubview(label)
-        label.addConstraints(center: .equalSuperviewCenter)
-    }
 }
-extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+
+extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
@@ -221,4 +221,3 @@ extension ViewController: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
 }
-

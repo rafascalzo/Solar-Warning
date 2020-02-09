@@ -9,9 +9,9 @@
 import Foundation
 
 struct User {
+    
     let name: String
     let skinType: Int
-    
 }
 
 struct UserViewModel {

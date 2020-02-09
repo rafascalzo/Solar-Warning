@@ -13,8 +13,6 @@ class MainViewWireframe: MainViewWireframeProtocol {
     weak var controller: MainView?
     
     static func createModule(viewRef: MainView) {
-        <#code#>
+        //
     }
-    
-    
 }

@@ -14,7 +14,7 @@ class TabBarViewController: UITabBarController {
         super.viewDidLoad()
         view.backgroundColor = .blue
         
-        let controller = ViewController()
+        let controller = MainView()
         controller.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
         controller.tabBarItem.accessibilityLabel = "Test"
         let controllers = [controller]
