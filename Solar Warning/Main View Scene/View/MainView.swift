@@ -2,7 +2,7 @@
 //  MainView.swift
 //  Solar Warning
 //
-//  Created by FulltrackMobile on 09/02/20.
+//  Created by Rafael VSM on 09/02/20.
 //  Copyright © 2020 rafaeldelegate. All rights reserved.
 //
 
@@ -49,7 +49,7 @@ class MainView: UIViewController, MainViewViewProtocol {
     
     var headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .gray
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -76,27 +76,31 @@ class MainView: UIViewController, MainViewViewProtocol {
         sv.distribution = .equalCentering
         sv.alignment = .leading
         sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.backgroundColor = .red
         return sv
     }()
     
     var body: UIView = {
         let view = UIView()
+        view.backgroundColor = .blue
+        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         collectionViewSunInfo.register(SunCollectionViewCell.self, forCellWithReuseIdentifier: sunReuseIdCell)
         render()
         
-        OpenUVAPI.UVIndex.requestAllData { (data, error) in
-            if error != nil {
-                print(error!)
-            } else {
-                print(data)
-                self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
-            }
-        }
+//        OpenUVAPI.UVIndex.requestAllData { (data, error) in
+//            if error != nil {
+//                print(error!)
+//            } else {
+//                print(data)
+//                self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
+//            }
+//        }
     }
     
     func render() {
@@ -109,14 +113,16 @@ class MainView: UIViewController, MainViewViewProtocol {
         })
         arrangedSubViews = views
         view.addSubview(headerView)
+        collectionViewSunInfo.backgroundColor = .red
         headerView.addSubview(collectionViewSunInfo)
         headerView.addSubview(stackView)
+        view.addSubview(body)
         
         NSLayoutConstraint.activate([
             headerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             headerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             headerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            headerView.heightAnchor.constraint(equalToConstant: 400),
+            headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             
             collectionViewSunInfo.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionViewSunInfo.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
@@ -126,7 +132,12 @@ class MainView: UIViewController, MainViewViewProtocol {
             stackView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
             stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
             stackView.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.5),
-            stackView.heightAnchor.constraint(equalToConstant: 230)
+            stackView.heightAnchor.constraint(equalToConstant: 230),
+            
+            body.topAnchor.constraint(equalTo: headerView.bottomAnchor),
+            body.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            body.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            body.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
         trackLayer.position = CGPoint(x: (3/4)*(view.frame.width), y: 100)
@@ -134,14 +145,32 @@ class MainView: UIViewController, MainViewViewProtocol {
         circularProgressBar.position =  CGPoint(x: (3/4)*(view.frame.width), y: 100)
         headerView.layer.addSublayer(circularProgressBar)
         circularProgressBar.strokeStart = 0
-        circularProgressBar.strokeEnd = 0.7
+        circularProgressBar.strokeEnd = 0.2
+        setupCurrentTime()
+    }
+    
+    func setupCurrentTime() {
+        let date = Date()
+        let dateString = Date.getStringDate(from: date, withFormat: .yearMothDayTHourMinutesSeconds)
+        print("DATADEAGORA: \(dateString)")
+        let components = dateString.components(separatedBy: "T")
+        let hourComponents = components[1].components(separatedBy: ":")
+        let hour = hourComponents[0]
+        let minutes = hourComponents[1]
+        print("hour ",hour, "Minutes ",minutes)
+        let factor = Float(hour)! / 24.0
+        let factor2 = Float(minutes)! / 60.0 * 1.0 / 24
+        
+        print(factor, factor2)
+        circularProgressBar.strokeEnd = CGFloat(factor) + CGFloat(factor2)
+        print(components[1]," ayhuuu horA")
+        
     }
     
     func updateContent(_ sunInfo: Sun?, _ safeExposureTime: SafeExposureTime?) {
         self.sunInfo =  sunInfo
         self.safeExposureTime = safeExposureTime
         updateView()
-        
     }
     
     func updateView() {
@@ -172,8 +201,6 @@ class MainView: UIViewController, MainViewViewProtocol {
             let label =  stackView.subviews[i] as! UILabel
             label.text = labelNames[i]
         }
-        
-        
         //        let formatter = DateFormatter()
         //        formatter.dateFormat = "yyyy/MM/dd HH:mm"
         //        let someDateTime = formatter.date(from: "2019/11/17 00:00")
@@ -181,16 +208,10 @@ class MainView: UIViewController, MainViewViewProtocol {
         //
         //        let remaining = someDateTime!.distance(to: sunriseDate)
         //        print(remaining)
-        //
+        
         //        let numb = CGFloat(remaining)
         //        print("hours \(numb/3600)")
     }
-    
-    var viewTest: UIView = {
-        let view = UIView()
-        view.backgroundColor = .orange
-        return view
-    }()
 }
 
 extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
