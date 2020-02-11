@@ -16,8 +16,12 @@ class TabBarViewController: UITabBarController {
         
         let controller = MainView()
         controller.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 0)
-        controller.tabBarItem.accessibilityLabel = "Test"
-        let controllers = [controller]
+        controller.tabBarItem.accessibilityLabel = "main"
+        
+        let userView = UserView()
+        userView.tabBarItem = UITabBarItem(tabBarSystemItem: .featured, tag: 1)
+        userView.tabBarItem.accessibilityLabel = "user"
+        let controllers = [controller, userView]
         let viewcontrollers = controllers.map {
             UINavigationController(rootViewController: $0)
         }
