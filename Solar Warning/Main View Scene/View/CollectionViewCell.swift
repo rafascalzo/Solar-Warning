@@ -9,6 +9,7 @@
 import UIKit
 
 class SunCollectionViewCell: UICollectionViewCell {
+    
     var label: UILabel = {
         let lb = UILabel()
         lb.font = UIFont.systemFont(ofSize: 10)
