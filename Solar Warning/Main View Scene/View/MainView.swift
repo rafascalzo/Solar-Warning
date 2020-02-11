@@ -14,7 +14,7 @@ class MainView: UIViewController, MainViewViewProtocol {
     var presenter: MainViewPresenterProtocol?
     var sunInfo: Sun!
     var safeExposureTime: SafeExposureTime!
-    var labelNames = ["Sunrise","sunset", "Solar noon", "Sunrise end"]
+    var labelNames = ["Sunrise","sunset"]
     var graphicValues = [CGFloat]()
     var graphicLabels = [String]()
     
@@ -206,8 +206,9 @@ class MainView: UIViewController, MainViewViewProtocol {
         skins.forEach { number in
             let result = CGFloat(CGFloat(number) / CGFloat(max)) * 200.00
             graphicValues.append(result)
-            graphicLabels.append("\(number)")
+            graphicLabels.append("\(number) mins")
         }
+        print(graphicLabels)
         collectionViewSunInfo.reloadData()
     }
     
