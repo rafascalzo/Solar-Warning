@@ -11,7 +11,7 @@ import UIKit
 class SunCollectionViewCell: UICollectionViewCell {
     var label: UILabel = {
         let lb = UILabel()
-        lb.font = UIFont.systemFont(ofSize: 0)
+        lb.font = UIFont.systemFont(ofSize: 10)
         lb.textColor = .white
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb

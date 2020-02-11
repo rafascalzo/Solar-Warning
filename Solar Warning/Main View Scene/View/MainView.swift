@@ -61,7 +61,7 @@ class MainView: UIViewController, MainViewViewProtocol {
         layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .red
+        cv.backgroundColor = .nightBackgroundColor
         cv.delegate = self
         cv.dataSource = self
         return cv
@@ -127,7 +127,7 @@ class MainView: UIViewController, MainViewViewProtocol {
             collectionViewSunInfo.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
             collectionViewSunInfo.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
             collectionViewSunInfo.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
-            collectionViewSunInfo.heightAnchor.constraint(equalToConstant: 400),
+            collectionViewSunInfo.heightAnchor.constraint(equalToConstant: 230),
             
             body.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             body.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
