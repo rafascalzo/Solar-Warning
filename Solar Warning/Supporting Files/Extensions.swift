@@ -80,9 +80,14 @@ extension UIColor {
     
     static let backgroudColor = UIColor.darkRgb(r: 39, g: 204, b: 255)
     
-    static let trackStrokeColor = UIColor.darkRgb(r: 112, g: 13, b: 41)
+    static let sunColor = UIColor(hue: 45/360, saturation: 1, brightness: 1, alpha: 1)
+    static let sunStrokeColor = UIColor(hue: 33/360, saturation: 1, brightness: 1, alpha: 1)
+    static let sunTrackStrokeColor = UIColor(hue: 45/360, saturation: 0.76, brightness: 1, alpha: 1)
     
-    static let outlineStrokeColor = UIColor.darkRgb(r: 255, g: 176, b: 111)
+    static let moonColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.27, alpha: 1)
+    static let moonStrokeColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.51, alpha: 1)
+    static let moonTrackStrokeColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.85, alpha: 1)
+    
     
     static let facebookBackgroundColor = UIColor.darkRgb(r: 0, g: 96, b: 255)
     

@@ -33,9 +33,6 @@ class SunCollectionViewCell: UICollectionViewCell {
         view.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         viewHeightAnchor = view.heightAnchor.constraint(equalToConstant: 200)
         viewHeightAnchor.isActive = true
-        
-        
-        
     }
     
     required init?(coder: NSCoder) {

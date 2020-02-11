@@ -16,14 +16,14 @@ class MainView: UIViewController, MainViewViewProtocol {
     var safeExposureTime: SafeExposureTime!
     var labelNames = ["Sunrise","sunset"]
     
-    var circularProgressBar: CAShapeLayer = {
+    var circularTimeProgressBar: CAShapeLayer = {
         let radius:CGFloat = 50
         let startAngle:CGFloat = 0
         let endAngle:CGFloat = 2 * CGFloat.pi
         let circularPath = UIBezierPath(arcCenter: .zero, radius: radius , startAngle: startAngle, endAngle: endAngle, clockwise: true)
         let layer = CAShapeLayer()
         layer.path = circularPath.cgPath
-        layer.strokeColor = UIColor.outlineStrokeColor.cgColor
+        layer.strokeColor = UIColor.sunStrokeColor.cgColor
         layer.lineWidth = 5
         layer.fillColor = UIColor.clear.cgColor
         layer.strokeEnd = 0
@@ -39,17 +39,16 @@ class MainView: UIViewController, MainViewViewProtocol {
         let circularPath = UIBezierPath(arcCenter: .zero, radius: radius , startAngle: startAngle, endAngle: endAngle, clockwise: true)
         let layer = CAShapeLayer()
         layer.path = circularPath.cgPath
-        layer.strokeColor = UIColor.trackStrokeColor.cgColor
+        layer.strokeColor = UIColor.sunTrackStrokeColor.cgColor
         layer.lineWidth = 5
-        layer.fillColor = UIColor.white.cgColor
-        
+        layer.fillColor = UIColor.sunColor.cgColor
         layer.lineCap = CAShapeLayerLineCap.round
         return layer
     }()
     
     var headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .gray
+        view.backgroundColor = .white
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -93,14 +92,14 @@ class MainView: UIViewController, MainViewViewProtocol {
         collectionViewSunInfo.register(SunCollectionViewCell.self, forCellWithReuseIdentifier: sunReuseIdCell)
         render()
         
-//        OpenUVAPI.UVIndex.requestAllData { (data, error) in
-//            if error != nil {
-//                print(error!)
-//            } else {
-//                print(data)
-//                self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
-//            }
-//        }
+                OpenUVAPI.UVIndex.requestAllData { (data, error) in
+                    if error != nil {
+                        print(error!)
+                    } else {
+                        print(data)
+                        self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
+                    }
+                }
     }
     
     func render() {
@@ -140,16 +139,16 @@ class MainView: UIViewController, MainViewViewProtocol {
             body.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        trackLayer.position = CGPoint(x: (3/4)*(view.frame.width), y: 100)
+        trackLayer.position = CGPoint(x: (2/4)*(view.frame.width), y: 100)
         headerView.layer.addSublayer(trackLayer)
-        circularProgressBar.position =  CGPoint(x: (3/4)*(view.frame.width), y: 100)
-        headerView.layer.addSublayer(circularProgressBar)
-        circularProgressBar.strokeStart = 0
-        circularProgressBar.strokeEnd = 0.2
+        circularTimeProgressBar.position =  CGPoint(x: (2/4)*(view.frame.width), y: 100)
+        headerView.layer.addSublayer(circularTimeProgressBar)
         setupCurrentTime()
     }
     
     func setupCurrentTime() {
+        // circularTimeProgressBar.strokeStart = 0
+        // circularTimeProgressBar.strokeEnd = 0.2
         let date = Date()
         let dateString = Date.getStringDate(from: date, withFormat: .yearMothDayTHourMinutesSeconds)
         print("DATADEAGORA: \(dateString)")
@@ -157,22 +156,57 @@ class MainView: UIViewController, MainViewViewProtocol {
         let hourComponents = components[1].components(separatedBy: ":")
         let hour = hourComponents[0]
         let minutes = hourComponents[1]
-        print("hour ",hour, "Minutes ",minutes)
-        let factor = Float(hour)! / 24.0
-        let factor2 = Float(minutes)! / 60.0 * 1.0 / 24
+        let hourFactor = Float(hour)! / 24.0
+        let minutesFactor = Float(minutes)! / 60.0 / 24
         
-        print(factor, factor2)
-        circularProgressBar.strokeEnd = CGFloat(factor) + CGFloat(factor2)
-        print(components[1]," ayhuuu horA")
-        
+        print(hourFactor, minutesFactor)
+        if Int(hour)! < 12 {
+            circularTimeProgressBar.strokeEnd = (CGFloat(hourFactor) + CGFloat(minutesFactor)) * 2
+        } else {
+            circularTimeProgressBar.strokeEnd = (CGFloat(hourFactor) + CGFloat(minutesFactor))
+        }
+        if Int(hour)! > 19 || Int(hour)! < 5 {
+            setupForNightTime()
+        } else {
+            setupForDayTime()
+        }
     }
     
+    func setupForNightTime() {
+        trackLayer.strokeColor = UIColor.moonTrackStrokeColor.cgColor
+        trackLayer.fillColor = UIColor.moonColor.cgColor
+        circularTimeProgressBar.strokeColor = UIColor.moonStrokeColor.cgColor
+        circularTimeProgressBar.fillColor = UIColor.clear.cgColor
+    }
+    
+    func setupForDayTime() {
+        trackLayer.strokeColor = UIColor.sunTrackStrokeColor.cgColor
+        trackLayer.fillColor = UIColor.sunColor.cgColor
+        circularTimeProgressBar.strokeColor = UIColor.sunStrokeColor.cgColor
+        circularTimeProgressBar.fillColor = UIColor.clear.cgColor
+    }
     func updateContent(_ sunInfo: Sun?, _ safeExposureTime: SafeExposureTime?) {
         self.sunInfo =  sunInfo
         self.safeExposureTime = safeExposureTime
         updateView()
+        update()
     }
     
+    func update() {
+        let veryFairSkinWhite = safeExposureTime.skinType1 ?? 0
+        let fairSkinWhite = safeExposureTime.skinType2 ?? 0
+        let fairSkinCream = safeExposureTime.skinType3 ?? 0
+        let oliveSkin = safeExposureTime.skinType4 ?? 0
+        let brownSkin = safeExposureTime.skinType5 ?? 0
+        let blackSkin = safeExposureTime.skinType6 ?? 0
+        let skins = [veryFairSkinWhite,fairSkinWhite,fairSkinCream,oliveSkin,brownSkin,blackSkin]
+        let max = skins.max()!
+        skins.forEach { number in
+            graphicValues.append(Int((number/max) * 200))
+        }
+        collectionViewSunInfo.reloadData()
+    }
+    var graphicValues = [Int]()
     func updateView() {
         let sunrise = sunInfo.sunTimes.sunrise
         //        let sunriseDate = Date.dateFrom(customString: sunrise, with: .ISO8601)
@@ -217,15 +251,14 @@ class MainView: UIViewController, MainViewViewProtocol {
 extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return graphicValues.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sunReuseIdCell, for: indexPath) as! SunCollectionViewCell
-        cell.view.backgroundColor = .green
-        let values: [CGFloat] = [100,120,40,50,60,70]
-        cell.label.text = ["sun info1","sun2","sun3","sun4"].randomElement()!
-        cell.viewHeightAnchor.constant = values.randomElement()!
+        cell.view.backgroundColor = .sunColor
+        cell.label.text = ["Type 1","Type 2","Type 3","Type 4","Type 5","Type 6"][indexPath.item]
+        cell.viewHeightAnchor.constant = CGFloat(graphicValues[indexPath.item])
         return cell
     }
     
