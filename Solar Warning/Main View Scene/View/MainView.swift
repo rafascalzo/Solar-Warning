@@ -15,9 +15,10 @@ class MainView: UIViewController, MainViewViewProtocol {
     var sunInfo: Sun!
     var safeExposureTime: SafeExposureTime!
     var labelNames = ["Sunrise","sunset"]
+    var graphicValues = [CGFloat]()
     
     var circularTimeProgressBar: CAShapeLayer = {
-        let radius:CGFloat = 50
+        let radius:CGFloat = 70
         let startAngle:CGFloat = 0
         let endAngle:CGFloat = 2 * CGFloat.pi
         let circularPath = UIBezierPath(arcCenter: .zero, radius: radius , startAngle: startAngle, endAngle: endAngle, clockwise: true)
@@ -33,7 +34,7 @@ class MainView: UIViewController, MainViewViewProtocol {
     }()
     
     var trackLayer: CAShapeLayer = {
-        let radius:CGFloat = 50
+        let radius:CGFloat = 70
         let startAngle:CGFloat = 0
         let endAngle:CGFloat = 2 * CGFloat.pi
         let circularPath = UIBezierPath(arcCenter: .zero, radius: radius , startAngle: startAngle, endAngle: endAngle, clockwise: true)
@@ -48,17 +49,18 @@ class MainView: UIViewController, MainViewViewProtocol {
     
     var headerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .nightBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
     lazy var collectionViewSunInfo: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 20
         layout.minimumLineSpacing = 10
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
         cv.translatesAutoresizingMaskIntoConstraints = false
-        cv.backgroundColor = .blue
+        cv.backgroundColor = .nightBackgroundColor
         cv.delegate = self
         cv.dataSource = self
         return cv
@@ -68,20 +70,19 @@ class MainView: UIViewController, MainViewViewProtocol {
     
     lazy var stackView: UIStackView = {
         let sv = UIStackView(arrangedSubviews: self.arrangedSubViews)
-        sv.backgroundColor = .yellow
         sv.spacing = 2
         sv.axis = .vertical
         sv.contentMode = .center
         sv.distribution = .equalCentering
         sv.alignment = .leading
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.backgroundColor = .red
+        sv.backgroundColor = .nightBackgroundColor
         return sv
     }()
     
     var body: UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = .nightBackgroundColor
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -92,18 +93,18 @@ class MainView: UIViewController, MainViewViewProtocol {
         collectionViewSunInfo.register(SunCollectionViewCell.self, forCellWithReuseIdentifier: sunReuseIdCell)
         render()
         
-                OpenUVAPI.UVIndex.requestAllData { (data, error) in
-                    if error != nil {
-                        print(error!)
-                    } else {
-                        print(data)
-                        self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
-                    }
-                }
+        OpenUVAPI.UVIndex.requestAllData { (data, error) in
+            if error != nil {
+                print(error!)
+            } else {
+                print(data)
+                self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
+            }
+        }
     }
     
     func render() {
-        view.backgroundColor = .backgroudColor
+        view.backgroundColor = .nightBackgroundColor
         let views =  labelNames.map({ (word) -> UILabel in
             let label = UILabel()
             label.text = word
@@ -112,9 +113,8 @@ class MainView: UIViewController, MainViewViewProtocol {
         })
         arrangedSubViews = views
         view.addSubview(headerView)
-        collectionViewSunInfo.backgroundColor = .red
         headerView.addSubview(collectionViewSunInfo)
-        headerView.addSubview(stackView)
+        body.addSubview(stackView)
         view.addSubview(body)
         
         NSLayoutConstraint.activate([
@@ -124,24 +124,24 @@ class MainView: UIViewController, MainViewViewProtocol {
             headerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             
             collectionViewSunInfo.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-            collectionViewSunInfo.trailingAnchor.constraint(equalTo: headerView.trailingAnchor, constant: -16),
-            collectionViewSunInfo.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.5),
+            collectionViewSunInfo.trailingAnchor.constraint(equalTo: headerView.trailingAnchor),
+            collectionViewSunInfo.leadingAnchor.constraint(equalTo: headerView.leadingAnchor),
             collectionViewSunInfo.heightAnchor.constraint(equalToConstant: 230),
-            
-            stackView.bottomAnchor.constraint(equalTo: headerView.bottomAnchor),
-            stackView.leadingAnchor.constraint(equalTo: headerView.leadingAnchor, constant: 16),
-            stackView.widthAnchor.constraint(equalTo: headerView.widthAnchor, multiplier: 0.5),
-            stackView.heightAnchor.constraint(equalToConstant: 230),
             
             body.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             body.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             body.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            body.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            body.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            stackView.bottomAnchor.constraint(equalTo: body.bottomAnchor),
+            stackView.leadingAnchor.constraint(equalTo: body.leadingAnchor, constant: 16),
+            stackView.widthAnchor.constraint(equalTo: body.widthAnchor, multiplier: 0.5),
+            stackView.heightAnchor.constraint(equalToConstant: 230)
         ])
         
-        trackLayer.position = CGPoint(x: (2/4)*(view.frame.width), y: 100)
+        trackLayer.position = CGPoint(x: (2/4)*(view.frame.width), y: 90)
         headerView.layer.addSublayer(trackLayer)
-        circularTimeProgressBar.position =  CGPoint(x: (2/4)*(view.frame.width), y: 100)
+        circularTimeProgressBar.position =  CGPoint(x: (2/4)*(view.frame.width), y: 90)
         headerView.layer.addSublayer(circularTimeProgressBar)
         setupCurrentTime()
     }
@@ -185,6 +185,7 @@ class MainView: UIViewController, MainViewViewProtocol {
         circularTimeProgressBar.strokeColor = UIColor.sunStrokeColor.cgColor
         circularTimeProgressBar.fillColor = UIColor.clear.cgColor
     }
+    
     func updateContent(_ sunInfo: Sun?, _ safeExposureTime: SafeExposureTime?) {
         self.sunInfo =  sunInfo
         self.safeExposureTime = safeExposureTime
@@ -202,11 +203,13 @@ class MainView: UIViewController, MainViewViewProtocol {
         let skins = [veryFairSkinWhite,fairSkinWhite,fairSkinCream,oliveSkin,brownSkin,blackSkin]
         let max = skins.max()!
         skins.forEach { number in
-            graphicValues.append(Int((number/max) * 200))
+            let result = CGFloat(CGFloat(number) / CGFloat(max)) * 200.00
+            graphicValues.append(result)
+            
         }
         collectionViewSunInfo.reloadData()
     }
-    var graphicValues = [Int]()
+    
     func updateView() {
         let sunrise = sunInfo.sunTimes.sunrise
         //        let sunriseDate = Date.dateFrom(customString: sunrise, with: .ISO8601)
@@ -258,12 +261,15 @@ extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sunReuseIdCell, for: indexPath) as! SunCollectionViewCell
         cell.view.backgroundColor = .sunColor
         cell.label.text = ["Type 1","Type 2","Type 3","Type 4","Type 5","Type 6"][indexPath.item]
-        cell.viewHeightAnchor.constant = CGFloat(graphicValues[indexPath.item])
+        cell.viewHeightAnchor.constant = graphicValues[indexPath.item]
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (headerView.frame.width / 4) - 60, height: collectionView.frame.height)
+        return CGSize(width: (headerView.frame.width / 6) * 0.55, height: collectionView.frame.height)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 15)
+    }
 }
