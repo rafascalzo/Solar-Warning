@@ -14,8 +14,9 @@ class MainView: UIViewController, MainViewViewProtocol {
     var presenter: MainViewPresenterProtocol?
     var sunInfo: Sun!
     var safeExposureTime: SafeExposureTime!
-    var labelNames = ["Sunrise","sunset"]
+    var labelNames = ["Sunrise","sunset", "Solar noon", "Sunrise end"]
     var graphicValues = [CGFloat]()
+    var graphicLabels = [String]()
     
     var circularTimeProgressBar: CAShapeLayer = {
         let radius:CGFloat = 70
@@ -205,7 +206,7 @@ class MainView: UIViewController, MainViewViewProtocol {
         skins.forEach { number in
             let result = CGFloat(CGFloat(number) / CGFloat(max)) * 200.00
             graphicValues.append(result)
-            
+            graphicLabels.append("\(number)")
         }
         collectionViewSunInfo.reloadData()
     }
@@ -260,7 +261,7 @@ extension MainView: UICollectionViewDelegate, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sunReuseIdCell, for: indexPath) as! SunCollectionViewCell
         cell.view.backgroundColor = .sunColor
-        cell.label.text = ["Type 1","Type 2","Type 3","Type 4","Type 5","Type 6"][indexPath.item]
+        cell.label.text = graphicLabels[indexPath.item]
         cell.viewHeightAnchor.constant = graphicValues[indexPath.item]
         return cell
     }
