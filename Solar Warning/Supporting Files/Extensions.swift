@@ -85,8 +85,8 @@ extension UIColor {
     static let sunTrackStrokeColor = UIColor(hue: 45/360, saturation: 0.76, brightness: 1, alpha: 1)
     
     static let moonColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.27, alpha: 1)
-    static let moonStrokeColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.51, alpha: 1)
-    static let moonTrackStrokeColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.85, alpha: 1)
+    static let moonStrokeColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.85, alpha: 1)
+    static let moonTrackStrokeColor = UIColor(hue: 49/360, saturation: 0.05, brightness: 0.51, alpha: 1)
     
     static let nightBackgroundColor = UIColor(hue: 257/360, saturation: 0.88, brightness: 0.61, alpha: 1)
     

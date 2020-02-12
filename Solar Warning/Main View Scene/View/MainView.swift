@@ -91,7 +91,7 @@ class MainView: UIViewController, MainViewViewProtocol {
         navigationController?.isNavigationBarHidden = true
         collectionViewSunInfo.register(SunCollectionViewCell.self, forCellWithReuseIdentifier: sunReuseIdCell)
         render()
-        
+        /*
         OpenUVAPI.UVIndex.requestAllData { (data, error) in
             if error != nil {
                 print(error!)
@@ -100,6 +100,7 @@ class MainView: UIViewController, MainViewViewProtocol {
                 self.updateContent(data?.results.sunInfo, data?.results.safeExposureTime)
             }
         }
+        */
     }
     
     func render() {
@@ -154,18 +155,17 @@ class MainView: UIViewController, MainViewViewProtocol {
         print("DATADEAGORA: \(dateString)")
         let components = dateString.components(separatedBy: "T")
         let hourComponents = components[1].components(separatedBy: ":")
-        let hour = hourComponents[0]
-        let minutes = hourComponents[1]
-        let hourFactor = Float(hour)! / 24.0
-        let minutesFactor = Float(minutes)! / 60.0 / 24
-        
-        print(hourFactor, minutesFactor)
-        if Int(hour)! < 12 {
-            circularTimeProgressBar.strokeEnd = (CGFloat(hourFactor) + CGFloat(minutesFactor)) * 2
-        } else {
-            circularTimeProgressBar.strokeEnd = (CGFloat(hourFactor) + CGFloat(minutesFactor))
+        var hour = Int(hourComponents[0])!
+        if hour >= 12 {
+            hour = hour % 12
         }
-        if Int(hour)! > 19 || Int(hour)! < 5 {
+        let minutes = Int(hourComponents[1])!
+    
+        let _12Hours:CGFloat = 3600 * 12
+        let pastTime: CGFloat = (CGFloat(hour) * 3600) + CGFloat(minutes)
+        circularTimeProgressBar.strokeEnd = pastTime / _12Hours
+       
+        if hour >= 19 || hour < 5 {
             setupForNightTime()
         } else {
             setupForDayTime()
