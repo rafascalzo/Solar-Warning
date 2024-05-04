@@ -8,7 +8,8 @@
 
 import Foundation
 
-struct RealTimeUVIndexWrapper: Codable {
+struct RealTimeUVIndexResponse: Decodable {
+    
     var results: RealTimeUVIndex
     
     private enum CodingKeys: String, CodingKey {
@@ -16,22 +17,22 @@ struct RealTimeUVIndexWrapper: Codable {
     }
 }
 
-struct RealTimeUVIndex: Codable {
-    //UV Index (real-time or forecasted depending on dtparameter)
+struct RealTimeUVIndex: Decodable {
+    /// UV Index (real-time or forecasted depending on dtparameter)
     var uvIndex:Double
-    //UV Index datetime in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
+    /// UV Index datetime in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
     var uvTime: String
-    //Max UV Index for the day (at solar noon)
+    /// Max UV Index for the day (at solar noon)
     var uvMax: Double
-    //max UV Index datetime (solar noon) in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
+    /// max UV Index datetime (solar noon) in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
     var uvMaxTime: String
-    //ozone level in du (Dobson Units) from OMI data or request (if provided),[Double]
+    /// ozone level in du (Dobson Units) from OMI data or request (if provided),[Double]
     var ozone: Double
-    //Latest OMI ozone update datetime in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
+    /// Latest OMI ozone update datetime in UTC, yyyy-MM-ddTHH:mm:ss.SSSZ,[ISO-8601]
     var ozoneTime: String
-    //safe exposure time for Fitzpatrick Skin Types
+    /// safe exposure time for Fitzpatrick Skin Types
     var safeExposureTime: SafeExposureTime?
-    //(*courtesy of suncalc.js)
+    /// (*courtesy of suncalc.js)
     var sunInfo: Sun
     
     private enum CodingKeys: String, CodingKey {
@@ -45,7 +46,7 @@ struct RealTimeUVIndex: Codable {
         case sunInfo = "sun_info"
     }
 }
-struct Sun: Codable {
+struct Sun: Decodable {
     
     var sunTimes: SunTimes
     var sunPosition: SunPosition
@@ -55,34 +56,34 @@ struct Sun: Codable {
         case sunPosition = "sun_position"
     }
 }
-struct SunTimes: Codable {
-    //sunrise:sunrise (top edge of the sun appears on the horizon)
+struct SunTimes: Decodable {
+    /// sunrise:sunrise (top edge of the sun appears on the horizon)
     var sunrise: String
-    //sunriseEnd:sunrise ends (bottom edge of the sun touches the horizon) ,[ISO-8601]
+    /// sunriseEnd:sunrise ends (bottom edge of the sun touches the horizon) ,[ISO-8601]
     var sunriseEnd: String
-    //goldenHourEnd:morning golden hour (soft light, best time for photography) ends ,[ISO-8601]
+    /// goldenHourEnd:morning golden hour (soft light, best time for photography) ends ,[ISO-8601]
     var goldenHourEnd: String
-    //solarNoon:solar noon (sun is in the highest position) ,[ISO-8601]
+    /// solarNoon:solar noon (sun is in the highest position) ,[ISO-8601]
     var solarNoon: String
-    //goldenHour:evening golden hour starts ,[ISO-8601]
+    /// goldenHour:evening golden hour starts ,[ISO-8601]
     var goldenHourStart: String
-    //sunsetStart:sunset starts (bottom edge of the sun touches the horizon) ,[ISO-8601]
+    /// sunsetStart:sunset starts (bottom edge of the sun touches the horizon) ,[ISO-8601]
     var sunsetStart: String
-    //sunset:sunset starts (bottom edge of the sun touches the horizon) ,[ISO-8601]
+    /// sunset:sunset starts (bottom edge of the sun touches the horizon) ,[ISO-8601]
     var sunset: String
-    //dusk:dusk (evening nautical twilight starts) ,[ISO-8601]
+    /// dusk:dusk (evening nautical twilight starts) ,[ISO-8601]
     var dusk: String
-    //nauticalDusk:nautical dusk (evening astronomical twilight starts) ,[ISO-8601]
+    /// nauticalDusk:nautical dusk (evening astronomical twilight starts) ,[ISO-8601]
     var nauticalDusk: String
-    //night:night starts (dark enough for astronomical observations) ,[ISO-8601]
+    /// night:night starts (dark enough for astronomical observations) ,[ISO-8601]
     var nightStart: String
-    //nadir:nadir (darkest moment of the night, sun is in the lowest position) ,[ISO-8601]
+    /// nadir:nadir (darkest moment of the night, sun is in the lowest position) ,[ISO-8601]
     var darkestMomentOfTheNight: String
-    //nightEnd:night ends (morning astronomical twilight starts) ,[ISO-8601]
+    /// nightEnd:night ends (morning astronomical twilight starts) ,[ISO-8601]
     var nightEnd: String
-    //nauticalDawn:nautical dawn (morning nautical twilight starts) ,[ISO-8601]
+    /// nauticalDawn:nautical dawn (morning nautical twilight starts) ,[ISO-8601]
     var nauticalDawn: String
-    //dawn:dawn (morning nautical twilight ends, morning civil twilight starts) ,[ISO-8601]
+    /// dawn:dawn (morning nautical twilight ends, morning civil twilight starts) ,[ISO-8601]
     var dawn: String
     
     private enum CodingKeys: String, CodingKey {
@@ -102,7 +103,7 @@ struct SunTimes: Codable {
         case dawn = "dawn"
     }
 }
-struct SunPosition: Codable {
+struct SunPosition: Decodable {
     //azimuth:sun azimuth in radians (direction along the horizon, measured from south to west), e.g. 0 is south and Math.PI * 3/4 is northwest ,[Double]
     var azimuth: Double
     //altitude:sun altitude above the horizon in radians, e.g. 0 at the horizon and PI/2 at the zenith (straight over your head) ,[Double]
@@ -112,8 +113,8 @@ struct SunPosition: Codable {
         case azimuth, altitude
     }
 }
-struct SafeExposureTime: Codable {
-    //safe exposure time (mins) till burn for Skin Type 1
+struct SafeExposureTime: Decodable {
+    /// safe exposure time (mins) till burn for Skin Type 1
     var skinType1: Int?
     //safe exposure time (mins) till burn for Skin Type 2,[Number]
     var skinType2: Int?

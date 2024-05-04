@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class OpenUVAPI: SessionManager {
+class OpenUVAPI: Session {
     
     static var baseURL: String {
         return Bundle.main.infoDictionary?["BASE_URL"] as! String
@@ -24,10 +24,15 @@ class OpenUVAPI: SessionManager {
         ]
     }
     
-    private init(){super.init()}
+    private convenience init() {
+        let configuration = URLSessionConfiguration.default
+                configuration.timeoutIntervalForRequest = 10
+                configuration.timeoutIntervalForResource = 10
+        self.init(configuration: configuration)
+    }
     
     static func request(_ url: URLConvertible, method: HTTPMethod = .get, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil) -> DataRequest {
-        let dataRequest = Alamofire.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
+        let dataRequest = AF.request(url, method: method, parameters: parameters, encoding: encoding, headers: headers)
         return dataRequest
     }
     
@@ -51,7 +56,7 @@ class OpenUVAPI: SessionManager {
         
         var headers: HTTPHeaders?
         if withAuthentication {
-            headers = authenticationHeader
+            headers = HTTPHeaders(authenticationHeader)
         }
         
         request(url, method: method, parameters: parametersDictionary, encoding: encoding, headers: headers).validate().responseJSON { (response) in

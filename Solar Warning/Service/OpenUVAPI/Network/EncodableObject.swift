@@ -16,7 +16,7 @@ public struct EncodableObject: Encodable {
         encode = objectWrapped.encode
     }
     public func encode(to encoder: Encoder) throws {
-        try encode(to: encoder)
+        try encode(encoder)
     }
     
 }

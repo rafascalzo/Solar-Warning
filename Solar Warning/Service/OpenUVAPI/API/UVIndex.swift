@@ -14,22 +14,20 @@ extension OpenUVAPI {
     
     struct UVIndex {
         
-        typealias UVCompletion = (_ object:RealTimeUVIndexWrapper?,_ error: String?) -> Void
+        typealias UVCompletion = (_ object:RealTimeUVIndexResponse?,_ error: String?) -> Void
         
         private init () {}
         
         static func requestAllData(completion: @escaping UVCompletion) {
-            let uvIndexInput = UVIndexInput(latitude: -23.15, longitude: 125.56)
+            let uvIndexInput = UVIndexRequest(latitude: -23.15, longitude: 125.56)
             let date = Date.getStringDate(from: uvIndexInput.date)
             let url = URLComposer.buildURL(from: "?lat=\(uvIndexInput.latitude)&lng=\(uvIndexInput.longitude)&dt=\(date)")
             OpenUVAPI.requestObject(url, .get, parameters: nil, encoding: URLEncoding.default, withAuthentication: true, completion: completion)
-            
-            
         }
     }
 }
 
-struct UVIndexInput {
+struct UVIndexRequest {
     let latitude: Double
     let longitude: Double
     let date = Date()
